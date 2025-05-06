@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>My Buggy Test Site</title>
+    <style>
+        body {font-family: Arial; margin: 0; padding: 0;}
+        .header {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 20px;
+        }
+        .main {
+            margin: 20px;
+            display: flex;
+            flex-direction: row;
+        }
+        .sidebar {
+            width: 50%;
+            background-color: #f4f4f4;
+            padding: 10px;
+        }
+        .content {
+            widht: 50%; /* BUG: wrong spelling */
+            background-color: #ddd;
+            padding: 10px;
+        }
+        button {
+            margin-top: 10px;
+            padding: 10px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="header">
+        <h1>Welcome to My Buggy Site</h1>
+    </div>
+
+    <div class="main">
+        <div class="sidebar">
+            <h2>Sidebar</h2>
+            <p>Click the button below:</p>
+            <button onclick="showAlert()">Click Me!</button>
+        </div>
+
+        <div class="content">
+            <h2>Main Content</h2>
+            <img src="wrongimagepath.jpg" alt="Sample Image" width="200"> <!-- BUG: Image path is broken -->
+            <p>This is some sample text. <i>Enjoy debugging!</p> <!-- BUG: unclosed <i> tag -->
+        </div>
+    </div>
+
+    <div style="margin:20px">
+        <h3>Contact Us</h3>
+        <form onsubmit="return validateForm()">
+            Name: <input type="text" id="name"><br><br>
+            Email: <input type="email" id="email"><br><br>
+            <input type="submit" value="Submit">
+        </form>
+    </div>
+
+    <script>
+        function showAlert() {
+            alertt("Button clicked!"); // BUG: wrong function name (should be alert)
+        }
+
+        function validateForm() {
+            let name = document.getElementById("name").value;
+            if (name == "") {
+                alert("Name must be filled out");
+                return false;
+            }
+            // BUG: No email validation done
+        }
+    </script>
+
+</body>
+</html>
